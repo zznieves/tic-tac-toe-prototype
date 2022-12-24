@@ -3,9 +3,7 @@ const functions = require('./modules/functions.js');
 // global variables
 let gameOn = true;
 let gameBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const p1 = 'X';
-const p2 = 'O';
-let playerTurn;
+let playerTurn = 1;
 
 // inform users how to play game
 console.log(`
@@ -16,13 +14,12 @@ When it is your turn, pick a number on the gameboard in order to mark it with yo
 
 Best of luck!\n\n`);
 
+// show players the game board
+functions.showGameBoard(gameBoard);
+
 
 // start the game/keep game going until we have a winner
 while(gameOn) {
-
-    playerTurn = 1;
-    // show players the game board
-    functions.showGameBoard(gameBoard);
 
     // get user input: what board piece would the player like to mark
     functions.markBoard(gameBoard, playerTurn);
@@ -31,5 +28,10 @@ while(gameOn) {
     functions.showGameBoard(gameBoard);
 
     // check if someone has won the game
-    functions.gameWon(gameBoard, playerTurn);
+    if(functions.gameWon(gameBoard, playerTurn)) {
+        gameOn = false;
+    }
+
+    // change player turn
+    playerTurn++;
 }
