@@ -26,4 +26,10 @@ while(gameOn) {
 
     // get user input: what board piece would the player like to mark
     functions.markBoard(gameBoard, playerTurn);
+
+    // show result of turn
+    functions.showGameBoard(gameBoard);
+
+    // check if someone has won the game
+    functions.gameWon(gameBoard, playerTurn);
 }
